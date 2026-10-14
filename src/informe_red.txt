@@ -1,0 +1,115 @@
+==========================================
+       INFORME DE DIAGNOSTICO DE RED
+Fecha: mar 13 oct 2026 23:40:17 -05
+==========================================
+
+------------------------------------------
+Host: 8.8.8.8
+------------------------------------------
+PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
+64 bytes from 8.8.8.8: icmp_seq=1 ttl=128 time=11.5 ms
+64 bytes from 8.8.8.8: icmp_seq=2 ttl=128 time=12.1 ms
+64 bytes from 8.8.8.8: icmp_seq=3 ttl=128 time=9.00 ms
+64 bytes from 8.8.8.8: icmp_seq=4 ttl=128 time=12.9 ms
+
+--- 8.8.8.8 ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3006ms
+rtt min/avg/max/mdev = 8.995/11.348/12.852/1.442 ms
+Resultado de ping: OK
+
+Resultados de traceroute:
+traceroute to 8.8.8.8 (8.8.8.8), 5 hops max, 60 byte packets
+ 1  192.168.235.2  0.313 ms  0.296 ms  0.194 ms
+ 2  * * *
+ 3  * * *
+ 4  * * *
+ 5  * * *
+
+Resultados de netstat:
+Active Internet connections (w/o servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State      
+tcp        0      0 192.168.235.128:46546   20.42.65.93:443         ESTABLISHED
+tcp        0      0 192.168.235.128:54568   57.144.23.32:5222       ESTABLISHED
+tcp        0      0 192.168.235.128:49160   140.82.113.26:443       ESTABLISHED
+tcp        0      0 192.168.235.128:44592   172.217.165.202:443     ESTABLISHED
+tcp        0      0 192.168.235.128:40422   150.171.109.117:443     ESTABLISHED
+tcp        0      0 192.168.235.128:35506   34.107.243.93:443       ESTABLISHED
+tcp        0      0 192.168.235.128:35474   57.144.23.32:443        ESTABLISHED
+tcp        0      0 192.168.235.128:43642   57.144.23.32:443        ESTABLISHED
+tcp        0      0 192.168.235.128:59534   57.144.115.32:443       ESTABLISHED
+udp        0      0 192.168.235.128:68      192.168.235.254:67      ESTABLISHED
+
+------------------------------------------
+Host: 1.1.1.1
+------------------------------------------
+PING 1.1.1.1 (1.1.1.1) 56(84) bytes of data.
+64 bytes from 1.1.1.1: icmp_seq=1 ttl=128 time=87.9 ms
+64 bytes from 1.1.1.1: icmp_seq=2 ttl=128 time=63.1 ms
+64 bytes from 1.1.1.1: icmp_seq=3 ttl=128 time=57.0 ms
+64 bytes from 1.1.1.1: icmp_seq=4 ttl=128 time=56.2 ms
+
+--- 1.1.1.1 ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3005ms
+rtt min/avg/max/mdev = 56.179/66.045/87.890/12.893 ms
+Resultado de ping: OK
+
+Resultados de traceroute:
+traceroute to 1.1.1.1 (1.1.1.1), 5 hops max, 60 byte packets
+ 1  192.168.235.2  0.516 ms  0.165 ms  0.275 ms
+ 2  * * *
+ 3  * * *
+ 4  * * *
+ 5  * * *
+
+Resultados de netstat:
+Active Internet connections (w/o servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State      
+tcp        0      0 192.168.235.128:46546   20.42.65.93:443         ESTABLISHED
+tcp        0      0 192.168.235.128:54568   57.144.23.32:5222       ESTABLISHED
+tcp        0      0 192.168.235.128:49160   140.82.113.26:443       ESTABLISHED
+tcp        0      0 192.168.235.128:44592   172.217.165.202:443     ESTABLISHED
+tcp        0      0 192.168.235.128:40422   150.171.109.117:443     ESTABLISHED
+tcp        0      0 192.168.235.128:35506   34.107.243.93:443       ESTABLISHED
+tcp        0      0 192.168.235.128:35474   57.144.23.32:443        ESTABLISHED
+tcp        0      0 192.168.235.128:43642   57.144.23.32:443        ESTABLISHED
+tcp        0      0 192.168.235.128:59534   57.144.115.32:443       ESTABLISHED
+udp        0      0 192.168.235.128:68      192.168.235.254:67      ESTABLISHED
+
+------------------------------------------
+Host: google.com
+------------------------------------------
+PING google.com (192.178.50.78) 56(84) bytes of data.
+64 bytes from tzmiaa-ad-in-f14.1e100.net (192.178.50.78): icmp_seq=1 ttl=128 time=98.6 ms
+64 bytes from tzmiaa-ad-in-f14.1e100.net (192.178.50.78): icmp_seq=2 ttl=128 time=123 ms
+64 bytes from tzmiaa-ad-in-f14.1e100.net (192.178.50.78): icmp_seq=3 ttl=128 time=142 ms
+64 bytes from tzmiaa-ad-in-f14.1e100.net (192.178.50.78): icmp_seq=4 ttl=128 time=105 ms
+
+--- google.com ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3005ms
+rtt min/avg/max/mdev = 98.604/117.380/142.417/17.097 ms
+Resultado de ping: OK
+
+Resultados de traceroute:
+traceroute to google.com (142.251.215.14), 5 hops max, 60 byte packets
+ 1  192.168.235.2  1.468 ms  1.333 ms  1.258 ms
+ 2  * * *
+ 3  * * *
+ 4  * * *
+ 5  * * *
+
+Resultados de netstat:
+Active Internet connections (w/o servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State      
+tcp        0      0 192.168.235.128:54568   57.144.23.32:5222       ESTABLISHED
+tcp        0      0 192.168.235.128:49160   140.82.113.26:443       ESTABLISHED
+tcp        0      0 192.168.235.128:44592   172.217.165.202:443     ESTABLISHED
+tcp        0      0 192.168.235.128:40422   150.171.109.117:443     ESTABLISHED
+tcp        0      0 192.168.235.128:35506   34.107.243.93:443       ESTABLISHED
+tcp        0      0 192.168.235.128:35474   57.144.23.32:443        ESTABLISHED
+tcp        0      0 192.168.235.128:43642   57.144.23.32:443        ESTABLISHED
+tcp        0      0 192.168.235.128:59534   57.144.115.32:443       ESTABLISHED
+udp        0      0 192.168.235.128:68      192.168.235.254:67      ESTABLISHED
+
+==========================================
+FIN DEL DIAGNOSTICO
+==========================================

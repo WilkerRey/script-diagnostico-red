@@ -2,64 +2,84 @@
 
 # =================================================================
 # Script para diagnosticar problemas de red en un sistema Linux
+# Ejecuta ping, traceroute y netstat sobre una lista de hosts
+# Generando un informe de conectividad
 # =================================================================
 
-# host que se van a probar
+# Lista de hosts que se van a probar
 hosts=("8.8.8.8" "1.1.1.1" "google.com")
 
-# archivo informe
-reporte = "informe_red.txt"
+# Ruta del archivo de informe (junto al script)
+directorio="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+reporte="$directorio/informe_red.txt"
 
-# limpiar archivo de reporte
-echo "=========================================0" > $reporte
-echo "Informe de Diagnóstico de Red" >> $reporte
-echo "==========================================" >> $reporte
-echo "" >> $reporte
+# Crear el informe desde cero
+echo "==========================================" > "$reporte"
+echo "       INFORME DE DIAGNOSTICO DE RED" >> "$reporte"
+echo "Fecha: $(date)" >> "$reporte"
+echo "==========================================" >> "$reporte"
+echo "" >> "$reporte"
 
-# recorrer cada host de la lista
+# Recorrer cada host de la lista
 for host in "${hosts[@]}"; do
+
     echo "Analizando: $host"
+    echo "------------------------------------------" >> "$reporte"
+    echo "Host: $host" >> "$reporte"
+    echo "------------------------------------------" >> "$reporte"
 
-    echo "-----------------------------------------" >> $reporte
-    echo "Host: $host" >> $reporte
-    ech0 "-----------------------------------------" >> $reporte
+    # -------------------------------------------------------------
+    # Prueba de ping
+    # -------------------------------------------------------------
+    echo "Realizando prueba de ping a $host..."
 
-    # prueba de ping
-    echo "Realizando prueba de ping..."
-
-    if ping -c 4 $host > /dev/null 2>&1; then
-        echo "Ping: OK" >> $reporte
-        echo "Ping: OK"
+    if command -v ping > /dev/null 2>&1; then
+        if ping -c 4 -W 2 "$host" >> "$reporte" 2>&1; then
+            echo "Resultado de ping: OK" | tee -a "$reporte"
+        else
+            echo "Resultado de ping: FALLIDO" | tee -a "$reporte"
+        fi
     else
-        echo "Ping: FALLIDO" >> $reporte
-        echo "Ping: FALLIDO"
+        echo "Error: ping no está instalado." >> "$reporte"
     fi
 
-    # prueba de traceroute
-    echo "Realizando prueba de traceroute..."
+    echo "" >> "$reporte"
+
+    # -------------------------------------------------------------
+    # Prueba de traceroute
+    # -------------------------------------------------------------
+    echo "Realizando prueba de traceroute a $host..."
+    echo "Resultados de traceroute:" >> "$reporte"
 
     if command -v traceroute > /dev/null 2>&1; then
-        traceroute -m 5 -w 1 "$host" >> "$reporte" 2>&1
+        traceroute -n -m 5 -w 1 "$host" >> "$reporte" 2>&1
     else
-        echo "TRACEROUTE no está instalado." >> $reporte
+        echo "TRACEROUTE no está instalado." >> "$reporte"
     fi
 
-    # prueba de netstat
+    echo "" >> "$reporte"
 
-    echo "Realizando prueba de conexion de red..."
+    # -------------------------------------------------------------
+    # Consulta de conexiones de red con netstat
+    # -------------------------------------------------------------
+    echo "Consultando conexiones de red..."
+    echo "Resultados de netstat:" >> "$reporte"
 
     if command -v netstat > /dev/null 2>&1; then
         netstat -tun >> "$reporte" 2>&1
     else
-        echo "NETSTAT no está instalado." >> $reporte
+        echo "NETSTAT no está instalado." >> "$reporte"
     fi
 
-    echo "" >> $reporte
+    echo "" >> "$reporte"
+
 done
 
-echo "==========================================" >> $reporte
-echo "FIN DIAGNOSTICO." >> $reporte
-echo "==========================================" >> $reporte
+# Finalizar el informe
+echo "==========================================" >> "$reporte"
+echo "FIN DEL DIAGNOSTICO" >> "$reporte"
+echo "==========================================" >> "$reporte"
 
 echo ""
-echo "Diagnóstico de red completado. Informe generado en informe_red.txt"
+echo "Diagnóstico de red completado."
+echo "Informe generado en: $reporte"
